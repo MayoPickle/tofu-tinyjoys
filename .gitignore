@@ -1,0 +1,53 @@
+# Node 相关
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+.pnp
+.pnp.js
+
+# 构建产物
+/dist
+/build
+.next/
+out/
+.nuxt/
+.output/
+
+# 移动端相关
+/ios/Pods/
+/android/app/build/
+/android/build/
+/android/.gradle/
+*.apk
+*.aab
+*.ipa
+
+# 环境变量文件
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# 编辑器相关
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-workspace
+.DS_Store
+
+# 日志
+logs
+*.log
+
+# 临时文件
+tmp/
+temp/
+
+# 测试覆盖率报告
+coverage/
+
+# TypeScript 缓存
+*.tsbuildinfo 

@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 248, 250, 252;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  min-height: 100vh;
+  font-family: var(--font-nunito), sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-baloo), cursive;
+}
+
+@layer components {
+  /* 可爱的按钮 */
+  .btn-cute {
+    @apply rounded-full px-6 py-2 font-bold shadow-md transition-all duration-300 transform hover:scale-105 active:scale-95;
+  }
+
+  .btn-primary {
+    @apply btn-cute bg-primary-500 text-white hover:bg-primary-600;
+  }
+
+  .btn-secondary {
+    @apply btn-cute bg-secondary-500 text-white hover:bg-secondary-600;
+  }
+
+  .btn-pink {
+    @apply btn-cute bg-tofupink-500 text-white hover:bg-tofupink-600;
+  }
+
+  .btn-purple {
+    @apply btn-cute bg-tofupurple-500 text-white hover:bg-tofupurple-600;
+  }
+
+  /* 可爱的卡片 */
+  .card-cute {
+    @apply bg-white rounded-2xl shadow-soft p-4 border-2 transition-all duration-300 hover:shadow-medium;
+  }
+
+  .card-cute-pink {
+    @apply card-cute border-tofupink-200 hover:border-tofupink-300;
+  }
+
+  .card-cute-blue {
+    @apply card-cute border-primary-200 hover:border-primary-300;
+  }
+
+  .card-cute-orange {
+    @apply card-cute border-secondary-200 hover:border-secondary-300;
+  }
+
+  .card-cute-purple {
+    @apply card-cute border-tofupurple-200 hover:border-tofupurple-300;
+  }
+
+  /* 可爱的输入框 */
+  .input-cute {
+    @apply rounded-xl border-2 border-gray-200 px-4 py-2 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-200;
+  }
+
+  .input-cute-pink {
+    @apply input-cute focus:ring-tofupink-300;
+  }
+
+  .input-cute-blue {
+    @apply input-cute focus:ring-primary-300;
+  }
+
+  .input-cute-orange {
+    @apply input-cute focus:ring-secondary-300;
+  }
+
+  .input-cute-purple {
+    @apply input-cute focus:ring-tofupurple-300;
+  }
+
+  /* 标签 */
+  .tag-cute {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-sm font-medium transition-all duration-200 transform hover:scale-105;
+  }
+
+  /* 小动画元素 */
+  .wiggle-hover {
+    @apply transition-transform duration-300 hover:animate-wiggle;
+  }
+
+  .bounce-hover {
+    @apply transition-transform duration-300 hover:animate-bounce;
+  }
+
+  .pulse-hover {
+    @apply transition-opacity duration-300 hover:animate-pulse;
+  }
+} 
