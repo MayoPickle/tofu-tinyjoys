@@ -1,8 +1,5 @@
--- 创建数据库（如果不存在）
-CREATE DATABASE IF NOT EXISTS tofu_tinyjoys;
-
--- 连接到数据库
-\c tofu_tinyjoys;
+-- 创建数据库（PostgreSQL语法）
+-- 注意：此命令应由init.js处理，因为PostgreSQL不允许在事务中创建数据库
 
 -- 创建用户表
 CREATE TABLE IF NOT EXISTS users (
@@ -82,12 +79,12 @@ CREATE TABLE IF NOT EXISTS sync_logs (
 );
 
 -- 添加一些索引来优化查询性能
-CREATE INDEX idx_todos_user_id ON todos(user_id);
-CREATE INDEX idx_todos_due_date ON todos(due_date);
-CREATE INDEX idx_todos_completed ON todos(completed);
-CREATE INDEX idx_tags_user_id ON tags(user_id);
-CREATE INDEX idx_sync_logs_user_id ON sync_logs(user_id);
-CREATE INDEX idx_sync_logs_timestamp ON sync_logs(timestamp);
+CREATE INDEX IF NOT EXISTS idx_todos_user_id ON todos(user_id);
+CREATE INDEX IF NOT EXISTS idx_todos_due_date ON todos(due_date);
+CREATE INDEX IF NOT EXISTS idx_todos_completed ON todos(completed);
+CREATE INDEX IF NOT EXISTS idx_tags_user_id ON tags(user_id);
+CREATE INDEX IF NOT EXISTS idx_sync_logs_user_id ON sync_logs(user_id);
+CREATE INDEX IF NOT EXISTS idx_sync_logs_timestamp ON sync_logs(timestamp);
 
 -- 创建函数用于自动更新updated_at字段
 CREATE OR REPLACE FUNCTION update_updated_at()
@@ -99,10 +96,12 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- 为需要自动更新updated_at的表创建触发器
+DROP TRIGGER IF EXISTS update_users_updated_at ON users;
 CREATE TRIGGER update_users_updated_at
 BEFORE UPDATE ON users
 FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 
+DROP TRIGGER IF EXISTS update_todos_updated_at ON todos;
 CREATE TRIGGER update_todos_updated_at
 BEFORE UPDATE ON todos
 FOR EACH ROW EXECUTE FUNCTION update_updated_at(); 
